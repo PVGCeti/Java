@@ -9,4 +9,8 @@ public class Bote {
         this.zonaDelBarco = zonaDelBarco;
 
     }
+
+    public String toString(){
+        return "\n\nDatos del bote: \nIdentificador: " + this.identificador + "\nPlazas totales: " + this.plazas + "\nZona situada: " + this.zonaDelBarco;
+    }
 }

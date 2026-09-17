@@ -2,17 +2,30 @@ import java.util.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Personas miPersona = new Personas("a", Personas.Pais.ESPANA, Personas.ZonaDelBarco.Proa, "Mario", false, new Date());
-		Tripulacion miTripulacion = new Tripulacion("a", Personas.Pais.ESPANA, Personas.ZonaDelBarco.Babor, "Fermin", false, new Date(), "Muy alta");
-
-        Bote miBote = new Bote(123, 123, Personas.ZonaDelBarco.Proa);
-
-		System.out.println("Esta es mi persona: " + miPersona.nombre);
-		System.out.println("Este es mi seguridad: " + miTripulacion.getNivelSeguridad());
-        System.out.println("Este es mi bote: " + miBote.identificador);
-
         Personas[] misPersonas = DAOPersonas.generarDatos();
+        Bote[] misBotes = DAOBotes.generarBotes();
 
-        System.out.print(java.util.Arrays.toString(misPersonas));
+        // 1 - Hacer un filtro para separarlos por zonas tanto botes como personas [Proa, Estibor, Popa, Babor]
+        Personas[] personasProa = Arrays.stream(misPersonas)
+            .filter(n -> Personas.ZonaDelBarco.Proa.equals(n.zonaDelBarco))
+            .toArray(Personas[]::new);
+
+        Personas[] personasEstribor = Arrays.stream(misPersonas)
+            .filter(n -> Personas.ZonaDelBarco.Estribor.equals(n.zonaDelBarco))
+            .toArray(Personas[]::new);
+
+        Personas[] personasPopa = Arrays.stream(misPersonas)
+            .filter(n -> Personas.ZonaDelBarco.Popa.equals(n.zonaDelBarco))
+            .toArray(Personas[]::new);
+
+        Personas[] personasBabor = Arrays.stream(misPersonas)
+            .filter(n -> Personas.ZonaDelBarco.Babor.equals(n.zonaDelBarco))
+            .toArray(Personas[]::new);
+
+        // 2 - Hacer un sort por edad
+        // 3 - Agrupar a los menores con sus hermanos y un adulto
+        // 4 - Crear el orden de llamada siguiendo los requisitos
+        // 5 - Llamar a los pasajeros a sus respectivos bottes
+
     }
 }
